@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+
+  backend1:
+    image: alpine
+    networks:
+      frontend:
+        ipv4_address: 10.6.0.11
+    command: ["tail", "-f", "/dev/null"]
+
+  backend2:
+    image: alpine
+    networks:
+      frontend:
+        ipv4_address: 10.6.0.12
+    command: ["tail", "-f", "/dev/null"]
+
+  dns:
+    build: ..
+    networks:
+      frontend:
+        ipv4_address: 10.6.0.10
+
+  box:
+    build: ./nslookup-box
+    networks:
+      frontend:
+
+networks:
+  frontend:    
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.6.0.0/16
