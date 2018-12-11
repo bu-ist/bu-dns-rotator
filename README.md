@@ -1,5 +1,7 @@
 # DNS rotator
 
+[![Build Status](https://travis-ci.org/bu-ist/bu-dns-rotator.svg?branch=master)](https://travis-ci.org/bu-ist/bu-dns-rotator)
+
 This docker image helps to change the IP address a hostname resolves to inside
 Docker networks.
 
