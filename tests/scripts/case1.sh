@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 
+# Container must resolve to a different IP after running change-ip.sh
 
 yml="docker-compose.case1.yml"
 
@@ -22,7 +22,6 @@ if [[ $output1 != *"Address: 10.6.0.11"* ]]; then
 fi
 
 docker-compose -f $yml exec dns change-ip.sh backend1 backend2
-docker-compose -f $yml restart dns
 
 output1=`docker-compose -f $yml run --rm box nslookup backend1 10.6.0.10`
 if [[ $output1 != *"Address: 10.6.0.12"* ]]; then
